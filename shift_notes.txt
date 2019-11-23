@@ -1,0 +1,643 @@
+/*	Title: shift.c
+* 	Author: David Ayodele
+* 	Date: 1/24/19
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <math.h>
+#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <errno.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int main(int argc, char *argv[]) {
+	
+	int i, j, k;
+	char line[256];
+	char line2[256];
+	char line3[256];
+	char *s1, *s2, *s3, *s4, *s5;
+	char c1[4];	
+	
+	printf("Enter plaintext: ");
+	fgets(line, sizeof(line), stdin);
+	s1 = line;
+	while(s1[i]) {
+	  putchar (toupper(s1[i]));
+	  i++;
+	}
+		
+	printf("Enter 'D' or 'E' (Decrypt or Encrypt): ");
+	fgets(line2, sizeof(4), stdin);
+	//sscanf(line, "%s", &s2);
+	s2 = line2;
+	
+	printf("Enter key (capital letter only): ");
+	fgets(line3, sizeof(4), stdin);
+	//sscanf(line, "%s", &s3);
+	s3 = line3;
+	
+	printf("plainext = %s", s1);
+	printf("Mode = %s", s2);
+	printf("Key = %s", s3);
+	
+	return 0;
+}
+
+----------------------------
+
+/*	Title: shift.c
+* 	Author: David Ayodele
+* 	Date: 1/24/19
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <math.h>
+#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <errno.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int main(int argc, char *argv[]) {
+	
+	int i, j, k;
+	char line[256];
+	char line2[256];
+	char line3[256];
+	char *s1, *s2, *s3, *s4, *s5;
+	char c1[4];	
+	
+	printf("Enter plaintext: ");
+	fgets(line, sizeof(line), stdin);
+	
+	while(line[i]) {
+	  putchar (toupper(line[i]));
+	  i++;
+	}
+	s1 = line;
+		
+	printf("Enter 'D' or 'E' (Decrypt or Encrypt): ");
+	fgets(line2, sizeof(4), stdin);
+	//sscanf(line, "%s", &s2);
+	s2 = line2;
+	
+	printf("Enter key (capital letter only): ");
+	fgets(line3, sizeof(4), stdin);
+	//sscanf(line, "%s", &s3);
+	s3 = line3;
+	
+	printf("plainext = %s", s1);
+	printf("Mode = %s", s2);
+	printf("Key = %s", s3);
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+=====================
+
+int i, j, k;
+	char str[MAX_SIZE];
+	char str2[MAX_SIZE];
+	char str3[MAX_SIZE];
+	
+	printf("Enter plaintext: ");
+	gets(str);
+	
+	
+	for(i=0; str[i]!='\0'; i++)
+    {
+        /*
+         * Ignore if character is not in alphabet and convert all to uppercase.
+         */
+        if(str[i]>='a' && str[i]<='Z')
+        {
+            str[i] = str[i] - 
+        }
+    }
+	
+	while(line[i]) {
+	  putchar (toupper(line[i]));
+	  i++;
+	}
+	s1 = line;
+		
+	printf("Enter 'D' or 'E' (Decrypt or Encrypt): ");
+	fgets(line2, sizeof(4), stdin);
+	//sscanf(line, "%s", &s2);
+	s2 = line2;
+	
+	printf("Enter key (capital letter only): ");
+	fgets(line3, sizeof(4), stdin);
+	//sscanf(line, "%s", &s3);
+	s3 = line3;
+	
+	printf("plainext = %s", s1);
+	printf("Mode = %s", s2);
+	printf("Key = %s", s3);
+
+
+	===========================
+
+	void whitespace(char str[]){
+    int i;
+    for(i=0; str[i+1]!='\0'; i++)
+        while(isspace(str[i])) {
+        str[i] = str[i+1];
+        i++;
+    }
+}
+
+
+===================
+
+/*	Title: shift.c
+* 	Author: David Ayodele
+* 	Date: 1/24/19
+*
+*
+* Refrences:
+* [1] http://forums.devshed.com/programming-42/loop-remove-whitespace-char-127422.html 
+* [2] 
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define MAX_SIZE 256 // Size of String allowed
+#define CHAR_SIZE 4 // Size of char
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+void nospace(char str[]){
+	int i;
+	for(i=0; str[i+1]!='\0'; i++)
+	    while(isspace(str[i])) {
+	    str[i] = str[i+1];
+	    i++;
+	}
+}
+
+int main(int argc, char *argv[]) {
+	
+	int i, j, k;
+	char str[MAX_SIZE];
+	char str2[MAX_SIZE];
+	char str3[MAX_SIZE];
+	
+	char c[4];
+	char c1[4];
+	char c2[4];
+	
+	printf("Enter plaintext: ");
+	gets(str);
+	strupr(str);
+	nospace(str);
+		
+	printf("Enter 'D' or 'E' (Decrypt or Encrypt): ");
+	fgets(c1, sizeof(c1), stdin);
+	//strupr(c1);
+	//sscanf(line, "%s", &s2);
+	//s3 = line
+	
+	printf("Enter key (capital letter only): ");
+	fgets(c2, sizeof(c2), stdin);
+	//sscanf(line, "%s", &s3);
+	//s3 = line3;
+	
+	printf("plainext = %s \n", str);
+	printf("Mode = %s \n", c1);
+	printf("Key = %s", c2);
+	
+	return 0;
+}
+
+
+
+========================
+/*	Title: shift.c
+* 	Author: David Ayodele
+* 	Date: 1/24/19
+*
+*
+* Refrences:
+* [1] http://forums.devshed.com/programming-42/loop-remove-whitespace-char-127422.html 
+* [2] 
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define MAX_SIZE 256 // Size of String allowed
+#define CHAR_SIZE 4 // Size of char
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+void nospace(char str[]){
+	int i;
+	for(i=0; str[i+1]!='\0'; i++)
+	    while(isspace(str[i])) {
+	    str[i] = str[i+1];
+	    i++;
+	}
+}
+
+int main(int argc, char *argv[]) {
+	
+	int i, j, k;
+	char str[MAX_SIZE];
+	char str2[MAX_SIZE];
+	char str3[MAX_SIZE];
+	
+	char c[4];
+	char c1[4];
+	char c2[4];
+	
+	memset(str,NULL,sizeof(str));
+	memset(str2,NULL,sizeof(str2));
+	memset(str3,NULL,sizeof(str3));
+	
+	printf("Enter the plaintext: ");
+	gets(str);
+	strupr(str);
+	nospace(str);
+	
+	printf("Enter 'D' or 'E' (Decrypt or Encrypt): ");
+	fgets(str2, sizeof(str2), stdin);
+	while ((strncmp(str2, "D", 1) != 0) && (strncmp(str2, "E", 1) != 0) || strlen(str2) > 2) {
+		printf("Error! Please enter 'D' or 'E' (Decrypt or Encrypt): ");
+    	fgets(str2, sizeof(str2), stdin);
+	}
+	
+	
+	printf("Enter the key (capital letter only): ");
+	fgets(str3, sizeof(str3), stdin);
+	while (!isupper(str3) || strlen(str3) > 2) {
+		printf("Error! Please enter a capital letter only: ");
+    	fgets(str3, sizeof(str3), stdin);
+	}
+	
+	
+	/*
+	For last prob. Word
+	page num
+	line from top (if pos)
+	If line num you have to go from bottom to top
+	if word num 
+	
+	This key cannot be proven secure
+	"This is a basic cryptography scheme"
+	printf("Enter the key (capital letter only): ");
+	while (strlen(str3) > 1 || str3 < "A" || str3 > "Z") { // while next input is not a capital letter print an error
+		printf("Error: Please enter a capital letter only: ");
+		fgets(str3, sizeof(str3), stdin);
+	}
+	*/
+	//sscanf(line, "%s", &s3);
+	//s3 = line3;
+	
+	printf("plainext = %s \n", str);
+	printf("Mode = %s \n", str2);
+	printf("Key = %s", str3);
+	
+	return 0;
+}
+
+======================
+
+/*	Title: shift.c
+* 	Author: David Ayodele
+* 	Date: 1/24/19
+*
+*
+* Refrences:
+* [1] http://forums.devshed.com/programming-42/loop-remove-whitespace-char-127422.html 
+* [2] 
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define MAX_SIZE 256 // Size of String allowed
+#define CHAR_SIZE 4 // Size of char
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+void nospace(char str[]){
+	int i;
+	for(i=0; str[i+1]!='\0'; i++)
+	    while(isspace(str[i])) {
+	    str[i] = str[i+1];
+	    i++;
+	}
+}
+
+int main(int argc, char *argv[]) {
+	
+	int i, j, k;
+	char str[MAX_SIZE];
+	char str2[MAX_SIZE];
+	char str3[MAX_SIZE];
+	
+	char c[4];
+	char c1[4];
+	char c2[4];
+	int c3;
+	
+	memset(str,NULL,sizeof(str));
+	memset(str2,NULL,sizeof(str2));
+	memset(str3,NULL,sizeof(str3));
+	
+	printf("Enter the plaintext: ");
+	gets(str);
+	strupr(str);
+	nospace(str);
+	
+	printf("Enter 'D' or 'E' (Decrypt or Encrypt): ");
+	fgets(str2, sizeof(str2), stdin);
+	while ((strncmp(str2, "D", 1) != 0) && (strncmp(str2, "E", 1) != 0) || strlen(str2) > 2) {
+		printf("Error! Please enter 'D' or 'E' (Decrypt or Encrypt): ");
+    	fgets(str2, sizeof(str2), stdin);
+	}
+	
+	
+	printf("Enter the key (capital letter only): ");
+	fgets(str3, sizeof(str3), stdin);
+	c3 = (int)str3[0];
+	while (isupper(c3) == 0 || strlen(str3) > 2) {
+		memset(str3,NULL,sizeof(str3));
+		printf("Error! Please enter a capital letter only (you entered: %c ): ", c3);
+		fgets(str3, sizeof(str3), stdin);
+		c3 = (int)str3[0];
+	}
+	
+	
+	/*
+	For last prob. Word
+	page num
+	line from top (if pos)
+	If line num you have to go from bottom to top
+	if word num 
+	
+	This key cannot be proven secure
+	"This is a basic cryptography scheme"
+	printf("Enter the key (capital letter only): ");
+	while (strlen(str3) > 1 || str3 < "A" || str3 > "Z") { // while next input is not a capital letter print an error
+		printf("Error: Please enter a capital letter only: ");
+		fgets(str3, sizeof(str3), stdin);
+	}
+	*/
+	//sscanf(line, "%s", &s3);
+	//s3 = line3;
+	
+	printf("plainext = %s \n", str);
+	printf("Mode = %s \n", str2);
+	printf("Key = %s", str3);
+	
+	return 0;
+}
+
+========================
+
+/*	Title: shift.c
+* 	Author: David Ayodele
+* 	Date: 1/24/19
+*
+*
+* Refrences:
+* [1] http://forums.devshed.com/programming-42/loop-remove-whitespace-char-127422.html 
+* [2] 
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define MAX_SIZE 256 // Size of String allowed
+#define CHAR_SIZE 4 // Size of char
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+void nospace(char str[]){
+	int i;
+	for(i=0; str[i+1]!='\0'; i++)
+	    while(isspace(str[i])) {
+	    str[i] = str[i+1];
+	    i++;
+	}
+}
+
+int main(int argc, char *argv[]) {
+	
+	int x, i, j, k;
+	char str[MAX_SIZE];
+	char str2[MAX_SIZE];
+	char str3[MAX_SIZE];
+	char str4[MAX_SIZE];
+	
+	char c[4];
+	char c1[4];
+	char c2[4];
+	int c3;
+	
+	memset(str,NULL,sizeof(str));
+	memset(str2,NULL,sizeof(str2));
+	memset(str3,NULL,sizeof(str3));
+	
+	printf("Enter the plaintext: ");
+	gets(str);
+	strupr(str);
+	nospace(str);
+	
+	printf("Enter 'D' or 'E' (Decrypt or Encrypt): ");
+	fgets(str2, sizeof(str2), stdin);
+	while ((strncmp(str2, "D", 1) != 0) && (strncmp(str2, "E", 1) != 0) || strlen(str2) > 2) {
+		printf("Error! Please enter 'D' or 'E' (Decrypt or Encrypt): ");
+    	fgets(str2, sizeof(str2), stdin);
+	}
+	
+	
+	printf("Enter the key (capital letter only): ");
+	fgets(str3, sizeof(str3), stdin);
+	c3 = (int)str3[0];
+	while (isupper(c3) == 0 || strlen(str3) > 2) {
+		memset(str3,NULL,sizeof(str3));
+		printf("Error! Please enter a capital letter only (you entered: %c ): ", c3);
+		fgets(str3, sizeof(str3), stdin);
+		c3 = (int)str3[0];
+	}
+	
+	k = c3 - 64;
+	for (i = 0; i < strlen(str); i++) {
+		x = (int)str[i] - 64;
+		j = (int)(x + k)%26;
+		str4[i] = (char)j + 64;
+		printf("\nj[%d] = %d\n", i, j);
+	}
+	
+	/*
+	For last prob. Word
+	page num
+	line from top (if pos)
+	If line num you have to go from bottom to top
+	if word num 
+	
+	This key cannot be proven secure
+	"This is a basic cryptography scheme"
+	printf("Enter the key (capital letter only): ");
+	while (strlen(str3) > 1 || str3 < "A" || str3 > "Z") { // while next input is not a capital letter print an error
+		printf("Error: Please enter a capital letter only: ");
+		fgets(str3, sizeof(str3), stdin);
+	}
+	*/
+	//sscanf(line, "%s", &s3);
+	//s3 = line3;
+	
+	printf("\nPlainext = %s", str);
+	printf("\nMode = %s", str2);
+	printf("Key = %d/%s", c3, str3);
+	printf("\nCiphertext = %s", str4);
+	
+	
+	return 0;
+}
+
+// JGBOJGG
+
+============================
+
+/*	Title: shift.c
+* 	Author: David Ayodele
+* 	Date: 1/24/19
+*
+*
+* Refrences:
+* [1] http://forums.devshed.com/programming-42/loop-remove-whitespace-char-127422.html 
+* [2] https://stackoverflow.com/questions/19896645/how-to-check-if-a-string-is-a-lettera-z-or-a-z-in-c
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define MAX_SIZE 256 // Size of String allowed
+#define CHAR_SIZE 4 // Size of char
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+void nospace(char str[]){
+	int i;
+	for(i=0; str[i+1]!='\0'; i++)
+	    while(isspace(str[i])) {
+	    str[i] = str[i+1];
+	    i++;
+	}
+}
+
+int main(int argc, char *argv[]) {
+	
+	int x, i, j, k;
+	char str[MAX_SIZE];
+	char str2[MAX_SIZE];
+	char str3[MAX_SIZE];
+	char str4[MAX_SIZE];
+	
+	char c[4];
+	char c1[4];
+	char c2[4];
+	int c3;
+	
+	memset(str,NULL,sizeof(str));
+	memset(str2,NULL,sizeof(str2));
+	memset(str3,NULL,sizeof(str3));
+	
+	printf("Enter the plaintext: ");
+	gets(str);
+	strupr(str);
+	nospace(str);
+	
+	printf("Enter 'D' or 'E' (Decrypt or Encrypt): ");
+	fgets(str2, sizeof(str2), stdin);
+	while ((strncmp(str2, "D", 1) != 0) && (strncmp(str2, "E", 1) != 0) || strlen(str2) > 2) {
+		printf("Error! Please enter 'D' or 'E' (Decrypt or Encrypt): ");
+    	fgets(str2, sizeof(str2), stdin);
+	}
+	
+	
+	printf("Enter the key (capital letter only): ");
+	fgets(str3, sizeof(str3), stdin);
+	c3 = (int)str3[0];
+	while (isupper(c3) == 0 || strlen(str3) > 2) {
+		memset(str3,NULL,sizeof(str3));
+		printf("Error! Please enter a capital letter only (you entered: %c ): ", c3);
+		fgets(str3, sizeof(str3), stdin);
+		c3 = (int)str3[0];
+	}
+	
+	k = c3 - 64;
+	for (i = 0; i < strlen(str); i++) {
+		x = (int)str[i] - 64; //Convert from ascii to base 26
+		
+		if (strncmp(str2, "E", 1) == 0){ // If mode is encrypt, shift positive
+			j = (int)(x + k)%26;	
+		}
+		else if (strncmp(str2, "D", 1) == 0){ // If mode is decrypt, shift negative
+			j = (int)(x - k)%26;
+		}
+		str4[i] = (char)j + 64; //Convert from base 26 back to ascii
+		printf("\nj[%d] = %d\n", i, j);
+	}
+	
+	printf("\nPlainext = %s", str);
+	printf("\nMode = %s", str2);
+	printf("Key = %d/%s", c3, str3);
+	printf("\nCiphertext = %s", str4);
+	
+	return 0;
+}
+
+str4[i] = j + 64; //Convert from base 26 back to ascii
+		printf("\nj[%d] = %d\n", i, j);
+		printf("\nx[%d] = %d\n", i, x);
+
+
+BEEAKFYDJXUQYHJIQRYHTYJIQFBQDUYJIIKFUHCQD
+
+https://www.tutorialspoint.com/c_standard_library/c_function_isupper.htm
+http://www.cplusplus.com/reference/cstring/strcmp/
+https://stackoverflow.com/questions/6660145/convert-ascii-number-to-ascii-character-in-c
+https://codescracker.com/c/program/c-program-remove-spaces-from-string.htm
+https://tricksumo.com/string-trim-functions-c/

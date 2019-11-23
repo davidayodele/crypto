@@ -1,0 +1,44 @@
+Example 5.5) - RSA Example
+Suppose Bob chooses p = 101 and q = 113. Then n = 11413 and phi(n) = 100 x 112 = 11200. Since 11200 = 2^6*5^2*7, an integer b can be used as an encryption exponent if and only if b is not divisible by 2, 5 or 7. (In practice, however, Bob will not factor phi(n). He will verify that gcd(phi(n), b) = 1 using Algorithm 5.3. If this is the case, he will compute b^-1 at the same time.) Suppose Bob chooses b = 3533. Then b^-1 mod 11200 = 6597.
+
+
+Hence, Bob's secret decryption exponent is a = 6597. 
+
+Bob publishes n = 11413 and b = 3533 in a directory. 
+
+Now, suppose Alice wants to encrypt the plaintext 9726 to send to Bob. She will compute 9726^3533 mod 11413 = 5761 and send the ciphertext 5761 over the channel. When Bob receives the ciphertext 5761, he uses his secret decryption exponent to compute 5761^6597 mod 11413 = 9726.
+
+
+Crux: 
+COROLLARY 5.6 (Fermat's Little Theorem) Suppose p is prime and b is not a multiple of p but b is in Z_p. Then b^p = b (mod p). 
+In other words b^p/b = b^(p-1) = b/b (mod p).
+
+Meaning so long as we find a number, b, in the group of p (not divisible by p and less than p), then b^(p-1) = 1 (mod p)  
+
+Since 1^(q-1) = 1, we can go further and write b^((p-1)(q-1)) = 1 (mod p). 
+
+For example, let 
+a*b = 1 mod (p-1)(q-1) then
+a*b = t*(p-1)(q-1) + 1 for some t >= 1
+Now suppose x is in the group of relative primes to n (Z*_n), then
+
+x^(a*b) mod n = x^(t*(p-1)(q-1) + 1) mod n =>
+
+(x^b)^a = x^(t*(p-1)(q-1) + 1) mod n (since x is in the primes mod group of n we can make both sides a power of x and maintain congruence. This would also work if x was in the mod group and non-prime)
+
+Therefore 
+(x^b)^a = x*x^((p-1)(q-1))*t mod n (we mult by another x and subtract 1 from the exponent)
+
+***With Fermat's Little Theorem*** we can now say
+(x^b)^a = x*1*t mod n (since n is prime and x is in the group of n (not divisible by n), Fermat's little theorem can be applied)
+
+Thus
+(x^b)^a = x mod n (since x*1*t = x)
+
+or equivalently
+x^(a*b) mod n = x mod n (by definition of mod congruence - LHS remainder = RHS remainder)
+
+So we can retrieve the original x mod n if we take the result of x^b mod n and raise it to the power a then mod with n, so (x^b)^a mod n  
+
+Thus
+When Alice computes 9726^3533 mod 11413 we have x = 9726, b = 3533, and n = 11413. Bob must now raise the result (which is 5761) to the power "a" then mod with n, so we get 5761^6729 mod 11413 which is really (9726^3533)^6729 mod 11413 which yields 9726. 

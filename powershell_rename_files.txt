@@ -1,0 +1,120 @@
+############### Working scripts ########################
+rename files in order: (powershell):
+(must first list the files in the needed order:
+get-childitem -filter "*.mp4" | sort LastWriteTime -Descending
+or
+get-childitem -filter "*.mp4" | sort LastWriteTime
+)
+
+OR  first rename files according to date then enumerate
+
+get-childitem -filter "*.mp4" | Rename-Item -newname {$_.LastWriteTime.toString("dd.MM.yyyy.HH.mm.ss") + ".mp4"}
+
+Then
+
+$nr = 1
+Dir | %{Rename-Item $_ -NewName (‘MyFile_{0}.txt’ -f $nr++)}
+
+OR (to keep original naming)
+
+$nr = 1
+Dir | %{Rename-Item $_ -NewName ([string]($nr) + "_" + $_.Name -f $nr++)}
+
+altogether:
+
+$nr = 1
+get-childitem -filter "*.mp4" | sort LastWriteTime | %{Rename-Item $_ -NewName ([string]($nr) + "_" + $_.Name -f $nr++)}
+
+
+\\
+Remove 1st 4 chars from filenames:
+
+get-childitem *.mp4 | rename-item -newname { [string]($_.name).substring(4) }
+
+Explanation:
+- get-childitem *.txt collects all *.txt-files in the actual directory.
+- rename-item -newname renames the piped results from the get-childitem command with the string that is generated in {}
+- [string]($_.name).substring(1) takes the filename starting after the first character
+//
+\\
+Split according to delimeter and take 2nd segment: 
+get-childitem *.mp4 | rename-item -newname { [string]($_.name).Split("_")[1] }
+//
+
+################# End working scripts #####################
+
+################# Experimental scripts #####################
+$nr = 1
+Dir | %{Rename-Item $_ -NewName (‘Cryptography_Mukhopadhyay_{0}.txt’ -f $nr++)}
+
+$nr = 1
+get-childitem -filter "*.mp4" | sort LastWriteTime | %{Rename-Item $_ -NewName (‘Cryptography_Mukhopadhyay_{0}.txt’ -f $nr++)}
+
+
+get-childitem *.txt | rename-item -newname { [string]($_.name).substring(1) }
+Explanation:
+- get-childitem *.txt collects all *.txt-files in the actual directory.
+- rename-item -newname renames the piped results from the get-childitem command with the string that is generated in {}
+- [string]($_.name).substring(1) takes the filename starting after the first character
+
+
+
+get-childitem *.mp4 | rename-item -newname { [string]($_.name).substring(4) }
+
+
+Get-ChildItem $path "ab_*" | where {$_.PSIsContainer} | ForEach-Object { Rename-Item $_.name ($_.name.insert(($_.name.LastIndexOf("_")+1),"100")) }
+
+dir | Rename-Item -NewName {$_.Directory.Name + " - " + $_.Name}
+
+dir | Rename-Item -NewName { $_.Name -replace ".mp4.mp4",".mp4" }
+
+
+rename "abcd*.txt" "////*.txt"
+
+
+dir | Rename-Item -NewName { $_.Name -replace "{0}_"," " }
+
+
+
+dir | Rename-Item -NewName {$nr++ + "_" + $_.Name}
+
+
+$nr = 1
+Dir | %{Rename-Item $_ -NewName ([string]($nr) + "_" + $_.Name -f $nr++)}
+
+
+$nr = 1
+Dir | %{Rename-Item $_ -NewName ($nr + $_.Name -f $nr++)}
+
+
+dir | Rename-Item -NewName {$nr++ + "_" + $_.Name}
+
+
+
+dir | Rename-Item -NewName { $_.Name -replace ".mp4.mp4",".mp4" }
+
+--------------
+Dir |
+Rename-Item -NewName { $_.Name -replace " ","_" }
+
+
+EDIT :
+Optionally, the Where-Object command can be used to filter out ineligible objects for the successive cmdlet (command-let). The following are some examples to illustrate the flexibility it can afford you:
+
+To skip any document files
+
+Dir |
+Where-Object { $_.Name -notmatch "\.(doc|xls|ppt)x?$" } |
+Rename-Item -NewName { $_.Name -replace " ","_" }
+To process only directories (pre-3.0 version)
+
+Dir |
+Where-Object { $_.Mode -match "^d" } |
+Rename-Item -NewName { $_.Name -replace " ","_" }
+PowerShell v3.0 introduced new Dir flags. You can also use Dir -Directory there.
+
+To skip any files already containing an underscore (or some other character)
+
+Dir |
+Where-Object { -not $_.Name.Contains("_") } |
+Rename-Item -NewName { $_.Name -replace " ","_" }
